@@ -3,16 +3,11 @@ import 'package:flutter/cupertino.dart';
 class ProviderState extends ChangeNotifier {
   int cartIndex = 0;
 
-  TextEditingController? nameController;
-  TextEditingController? emailController;
-  TextEditingController? numberController;
-  TextEditingController? passwordController;
+  TextEditingController nameController  = TextEditingController();
+  TextEditingController emailController=TextEditingController();
+  TextEditingController numberController=TextEditingController();
+  TextEditingController passwordController=TextEditingController();
 
-  // ProviderState({
-  //   this.nameController,
-  //   this.emailController,
-  //   this.numberController,
-  //   this.passwordController});
 
   incCart() {
     cartIndex++;
@@ -26,7 +21,23 @@ class ProviderState extends ChangeNotifier {
     notifyListeners();
   }
 
+  /*changeName(String? value){
+    name = value;
+    notifyListeners();
+  }
 
-
+  changeEmail(String? value){
+    email = value;
+    notifyListeners();
+  }
+  changeNumber(String? value) {
+    number = value;
+    notifyListeners();
+  }
+  changePass(String? value){
+    password = value;
+    notifyListeners();
+  }
+*/
 
 }

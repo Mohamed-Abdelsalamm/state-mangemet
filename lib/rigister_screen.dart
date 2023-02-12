@@ -3,13 +3,14 @@ import 'package:provider/provider.dart';
 import 'package:state_management_with_provider/home_screen.dart';
 import 'package:state_management_with_provider/provider.dart';
 import 'package:state_management_with_provider/text_form_field.dart';
-import 'package:state_management_with_provider/third_screen.dart';
-
 import 'button_reuse.dart';
 
 class RegisterScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
+  TextEditingController? name;
   TextEditingController? email;
+  TextEditingController? number;
+  TextEditingController? password;
 
   RegisterScreen({super.key});
 
@@ -17,12 +18,12 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
+        body: SizedBox(
           height: double.infinity,
           width: double.infinity,
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            physics: ScrollPhysics(),
+            physics: const ScrollPhysics(),
             child: Form(
               key: formKey,
               child: Padding(
@@ -32,10 +33,10 @@ class RegisterScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 80,
                       ),
-                      Text(
+                      const Text(
                         'Sign Up',
                         style: TextStyle(
                           fontSize: 40,
@@ -43,11 +44,11 @@ class RegisterScreen extends StatelessWidget {
                           color: Colors.teal,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       TextFormFieldReuse(
-                        controller: email,
+                        controller: value.nameController,
                         label: 'Full Name',
                         hint: 'Your name',
                         textInputType: TextInputType.name,
@@ -100,23 +101,25 @@ class RegisterScreen extends StatelessWidget {
                           return null;
                         },
                         prefixIcon: const Icon(Icons.lock),
-                        suffixIcon: Icon(Icons.remove_red_eye),
+                        suffixIcon: const Icon(Icons.remove_red_eye),
                         onTap: () {},
                       ),
                       const SizedBox(
                         height: 25,
                       ),
-                      ButtonReuse(
-                        buttonText: 'Sign up',
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => HomeScreen(),
-                              ),
-                            );
-                          }
-                        },
+                      Consumer<ProviderState>(
+                        builder: (context, value, child) => ButtonReuse(
+                          buttonText: 'Sign up',
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const HomeScreen(),
+                                ),
+                              );
+                            }
+                          },
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

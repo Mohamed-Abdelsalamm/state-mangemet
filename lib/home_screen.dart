@@ -90,7 +90,7 @@ class HomeScreen extends StatelessWidget {
               child: Center(
                 child: Consumer<ProviderState>(
                   builder: (context, value, child) => Text(
-                    'Welcome ${value.nameController} your email is ${value.emailController} and your mobile number is ${value.numberController} .',
+                    'Welcome ${value.nameController.text} your email is ${value.emailController.text} and your mobile number is ${value.numberController.text} .',
                     style: const TextStyle(
                       fontSize: 14,
                     ),
